@@ -1,0 +1,115 @@
+# ESTAGIOS
+stages:
+  - Lint
+  - Teste exceções sso
+  - Teste paralelo_1
+  - Teste paralelo_2
+
+#Modelo
+.Anchors: &config
+    before_script:
+      - export LANG="pt_BR.UTF-8" 
+      - npm ci
+    image: cypress/browsers:node16.14.2-slim-chrome103-ff102
+    variables:
+      TEST_ENV: CI
+      BASE_URL_FRONT: "http://"
+    artifacts:
+      when: on_failure
+      expire_in: 1 week
+      paths:
+        - cypress/screenshots
+        - cypress/videos
+        - cypress/allure_results
+    allow_failure: true
+    only:
+      - main
+      - tags
+      - merge_requests
+
+# ESLINT
+Eslint:
+  stage: Lint
+  image: node:12-alpine
+  allow_failure: true
+  script:
+    - rm -rf node_modules package-lock.json
+    - npm install
+    - npm install eslint-plugin-mocha@latest --save-dev
+    - npm run lint
+  only:
+    - main
+    - tags
+    - merge_requests
+
+API Excecoes SSO:
+  stage: Teste exceções sso
+  <<: *config
+  script:
+    - ./report.sh cy:excecoes_sso
+
+API Auditoria:
+  stage: Teste paralelo_1
+  <<: *config
+  script:
+    - ./report.sh cy:auditoria
+
+API Caduser_integration:
+  stage: Teste paralelo_1
+  <<: *config
+  script:
+    - ./report.sh cy:caduser_integration
+
+API SSO:
+  stage: Teste paralelo_1
+  <<: *config
+  script:
+    - ./report.sh cy:sso
+
+API Notification:
+  stage: Teste paralelo_1
+  <<: *config
+  script:
+    - ./report.sh cy:notification
+
+API Relatorio:
+  stage: Teste paralelo_1
+  <<: *config
+  script:
+    - ./report.sh cy:report
+
+API RTC:
+  stage: Teste paralelo_1
+  <<: *config
+  script:
+    - ./report.sh cy:rtc
+
+API Console:
+  stage: Teste paralelo_2
+  <<: *config
+  script:
+    - ./report.sh cy:console
+
+Front Console:
+  stage: Teste paralelo_2
+  <<: *config
+  script:
+    - ./report.sh cy:front_console
+
+Front Gateway:
+  stage: Teste paralelo_2
+  <<: *config
+  script:
+    - ./report.sh cy:front_gateway
+
+Front Login:
+  stage: Teste paralelo_2
+  <<: *config
+  script:
+    - ./report.sh cy:front_login
+
+# Front Promocional:
+#   stage: Teste paralelo
+#   <<: *config
+#   script:
+#     - ./report.sh cy:front_promocional
