@@ -1,4 +1,4 @@
-# QA-CYPRESS-BASE
+# QA-CYPRESS-BASE GITHUB
 
 Projeto desafio para automatizar cenários de API's e Front-end
 
@@ -6,7 +6,7 @@ Projeto desafio para automatizar cenários de API's e Front-end
 
 Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
 
-Consulte **[Implantação](https://)** para saber como implantar o projeto.
+Consulte **[Implantação](https://github.com/Guilhermme/qa-cypress-base)** para saber como implantar o projeto.
 
 ### 📋 Pré-requisitos
 
@@ -59,10 +59,10 @@ npm run cy:feature **/NAMEFILE.test.js
 
 ## ⚙️ Executando os testes com Alurre Reports
 
-O comando **./report.sh** junto com algum comando de execução personalizado **cy:front**, executa os testes gerando um report:
+O comando **./report.sh** junto com algum comando de execução personalizado **front**, executa os testes gerando um report:
 
 ```
-./report.sh cy:front
+./report.sh front
 ```
 
 Após executar os testes via report, para exibir as metricas digite:
@@ -79,7 +79,7 @@ npm run report:show
 npm install -g allure-commandline --save-dev
 ```
 
-* Acesse o Git **[QA-BASE-CYPRESS](https://)** menu CI/CID -> Pipelines
+* Acesse o Git **[QA-BASE-CYPRESS](https://github.com/Guilhermme/qa-cypress-base)** CI/CID
 * Acesse o Job que falhou, no lado direito em Job artifacts clique em download
 * Extraia o arquivo baixado, acesse a pasta [cypress/allure-results] abra um terminal e digite:
 

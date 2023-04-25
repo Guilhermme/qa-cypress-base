@@ -1,7 +1,7 @@
 # ESTAGIOS
 stages:
   - Lint
-  - Teste exceções sso
+  - Teste exceções
   - Teste paralelo_1
   - Teste paralelo_2
 
@@ -42,74 +42,20 @@ Eslint:
     - tags
     - merge_requests
 
-API Excecoes SSO:
-  stage: Teste exceções sso
+teste-1:
+  stage: Teste exceções
   <<: *config
   script:
-    - ./report.sh cy:excecoes_sso
+    - ./report.sh comando-execução-3
 
-API Auditoria:
+teste-2:
   stage: Teste paralelo_1
   <<: *config
   script:
-    - ./report.sh cy:auditoria
+    - ./report.sh comando-execução-2
 
-API Caduser_integration:
+teste-3:
   stage: Teste paralelo_1
   <<: *config
   script:
-    - ./report.sh cy:caduser_integration
-
-API SSO:
-  stage: Teste paralelo_1
-  <<: *config
-  script:
-    - ./report.sh cy:sso
-
-API Notification:
-  stage: Teste paralelo_1
-  <<: *config
-  script:
-    - ./report.sh cy:notification
-
-API Relatorio:
-  stage: Teste paralelo_1
-  <<: *config
-  script:
-    - ./report.sh cy:report
-
-API RTC:
-  stage: Teste paralelo_1
-  <<: *config
-  script:
-    - ./report.sh cy:rtc
-
-API Console:
-  stage: Teste paralelo_2
-  <<: *config
-  script:
-    - ./report.sh cy:console
-
-Front Console:
-  stage: Teste paralelo_2
-  <<: *config
-  script:
-    - ./report.sh cy:front_console
-
-Front Gateway:
-  stage: Teste paralelo_2
-  <<: *config
-  script:
-    - ./report.sh cy:front_gateway
-
-Front Login:
-  stage: Teste paralelo_2
-  <<: *config
-  script:
-    - ./report.sh cy:front_login
-
-# Front Promocional:
-#   stage: Teste paralelo
-#   <<: *config
-#   script:
-#     - ./report.sh cy:front_promocional
+    - ./report.sh comando-execução-4
